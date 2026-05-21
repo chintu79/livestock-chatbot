@@ -1,0 +1,184 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 36px 32px;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px var(--border);
+  animation: slideUp 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.closeBtn {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--transition);
+}
+.closeBtn:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+.icon { font-size: 36px; filter: drop-shadow(0 0 16px rgba(74,222,128,0.5)); }
+.title { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--text-primary); }
+.subtitle { font-size: 13px; color: var(--text-secondary); text-align: center; }
+
+.waveWrapper {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+}
+
+.bar {
+  width: 3px;
+  min-height: 4px;
+  border-radius: 4px;
+  background: var(--border);
+  transition: height 0.1s ease;
+  flex-shrink: 0;
+}
+.barActive {
+  background: var(--accent);
+  animation: wave 0.8s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(74,222,128,0.4);
+}
+.barSpeaking {
+  background: #60a5fa;
+  box-shadow: 0 0 6px rgba(96,165,250,0.4);
+}
+
+.status {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  height: 20px;
+  transition: color var(--transition);
+}
+.listening { color: var(--accent); }
+.thinking { color: #facc15; }
+.speaking { color: #60a5fa; }
+
+.transcript {
+  background: var(--user-bubble);
+  border: 1px solid var(--user-border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  width: 100%;
+  font-size: 13px;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.transcriptLabel { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+.response {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  width: 100%;
+  font-size: 13px;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  line-height: 1.5;
+  max-height: 100px;
+  overflow-y: auto;
+}
+.responseLabel { font-size: 10px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+
+.error {
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #f87171;
+  width: 100%;
+  text-align: center;
+}
+
+.micBtn {
+  position: relative;
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  margin-top: 4px;
+}
+.micBtn:hover:not(:disabled) {
+  border-color: var(--accent-dim);
+  color: var(--accent);
+  background: var(--accent-glow);
+  transform: scale(1.05);
+}
+.recording {
+  background: rgba(239,68,68,0.1) !important;
+  border-color: #ef4444 !important;
+  color: #ef4444 !important;
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+.busy {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+.pulseRing {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid #ef4444;
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  padding-bottom: 4px;
+}
